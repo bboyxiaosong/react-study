@@ -13,7 +13,9 @@ class Todolist extends Component{
             inputValue:'',
             list:[]
         }
-
+        this.hanldeInputChange = this.hanldeInputChange.bind(this);
+        this.handleBtnClick = this.handleBtnClick.bind(this);
+        this.handleItemDelete = this.handleItemDelete.bind(this);
     }
 
     render(){
@@ -25,43 +27,55 @@ class Todolist extends Component{
                         id="insertArea"
                         className='input'
                         value={this.state.inputValue}
-                        onChange={this.hanldeInputChange.bind(this)}
+                        onChange={this.hanldeInputChange}
                     
                     />
-                    <button onClick={this.handleBtnClick.bind(this)}>提交</button>    
+                    <button onClick={this.handleBtnClick}>提交</button>    
                 </div>
                 <ul>
                     {
-                        this.state.list.map((item,index)=>{
-                          return (
-                        <div>
-                            <TodoItem 
-                            index={index} 
-                            content={item}
-                            deleteItem={this.handleItemDelete.bind(this)}
-                            />
-
-                          {/*<li 
-                          key={index}
-                          onClick={this.handleItemDelete.bind(this,index)}
-                          dangerouslySetInnerHTML={{__html:item}}
-                          >
-                          </li>*/}
-                          </div>
-                          )
-                          
-                        })
+                       this. getTodoItem() 
                     }
                 </ul>
             </Fragment>
         )
     }
+    getTodoItem(){
+        return (
+            this.state.list.map((item,index)=>{
+                return (
+              <div>
+                  <TodoItem 
+                  index={index} 
+                  content={item}
+                  deleteItem={this.handleItemDelete}
+                  />
+
+                {/*<li 
+                key={index}
+                onClick={this.handleItemDelete.bind(this,index)}
+                dangerouslySetInnerHTML={{__html:item}}
+                >
+                </li>*/}
+                </div>
+                )
+                
+              })
+
+        )
+    }
     hanldeInputChange(e){
         //this.state.inputValue = e.target.value;
         //console.log(e.target.value);
-        this.setState({
-            inputValue:e.target.value
-        })
+
+        // this.setState({
+        //     inputValue:e.target.value
+        // });
+        //下面变成函数的形式
+        const value = e.target.value;
+        this.setState(()=>({
+            inputValue:value
+        }))
     }
 
     handleBtnClick(){
