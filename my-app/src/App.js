@@ -5,28 +5,40 @@ class App extends Component{
     constructor(props){
         super(props)
         this.state = {
-            show:true
+            list:[]
         }
-        this.handleToggole = this.handleToggole.bind(this);
+        this.handleAddItem = this.handleAddItem.bind(this);
     }
     render (){
         return(
             <Fragment>
-                <CSSTransition 
-                in={this.state.show}
-                timeout={1000}
-                className='fade'
-                >
-                    <div>hello</div>
-                </CSSTransition>
-                {/*  <div className={this.state.show?'show':'hide'}>hello</div> */}
-                <button onClick={this.handleToggole}>toggle</button>
+                <TransitionGroup>
+                {
+                    this.state.list.map((item,index) => {
+                        return (
+                            <CSSTransition 
+                            timeout={1000}
+                            classNames='fade'
+                            unmountOnExit
+                            onEntered={(el)=>{el.style.color='blue'}}
+                            appear={true} //如果第一次进入也带入动画的话
+                            key={index}
+                            >
+                            <div>{item}</div>
+                            </CSSTransition>
+                        )
+                    })
+                }
+                </TransitionGroup>
+                <button onClick={this.handleAddItem}>toggle</button>
             </Fragment>
         )
     }
-    handleToggole (){
-        this.setState({
-            show:this.state.show?false:true
+    handleAddItem (){
+        this.setState((prevState)=>{
+            return {
+                list:[...prevState.list,'item']
+            }
         })
     }
 }
