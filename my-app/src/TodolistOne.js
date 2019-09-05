@@ -1,3 +1,11 @@
+/**
+ * 这组件是 拆分之前的组件 ，拆分之后是 TodolistTwo 与 todolistUI 
+ * 又名 聪明组件 与傻瓜组件 就是 逻辑组件与 UI 组件
+ * 下一步 是 无状态组件 
+ * 无状态组件就是一个
+ * 
+ *  */ 
+
 import React ,{ Component,Fragment} from 'react';
 import 'antd/dist/antd.css';
 import {Input,Button,List} from 'antd';
