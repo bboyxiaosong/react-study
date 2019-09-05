@@ -56,7 +56,7 @@ class TodolistOne extends Component{
         store.dispatch(action)
     }
     handleStoreChange(){
-        console.log('storgeCHange');
+        // console.log('storgeCHange');
         this.setState(store.getState());
     }
     handleBtnClick(){
