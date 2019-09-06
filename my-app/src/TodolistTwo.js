@@ -2,7 +2,7 @@ import React ,{ Component,Fragment} from 'react';
 import TodolistUI from './TodolistUI'
 import store from './store/index.js';
 import axios from 'axios';
-import {getInputChangeAction,getAddItemAction,getDeleteItemAction} from './store/actionCreators';
+import {getInitList , getTodoList , getInputChangeAction , getAddItemAction , getDeleteItemAction , initListAction } from './store/actionCreators';
 class TodolistTwo extends Component{
     constructor(props){
         super(props);
@@ -28,13 +28,33 @@ class TodolistTwo extends Component{
         const action = getInputChangeAction(e.target.value);
         store.dispatch(action)
     }
+    // componentDidMount(){
+    //     const action = getTodoList(store);//
+    //     // axios.get('/api/todolist')
+    //     //     .then((res)=>{
+    //     //         const data = res.data;
+    //     //         const action = initListAction(data)
+    //     //         store.dispatch(action);
+    //     //     })
+    //     //     .catch(()=>{console.log('error')})
+    // }
+
+    // 下面用 redux-saga实现以下，不用 redux-thunk中间实现
+
     componentDidMount(){
-        axios.get('/api/todolist')
-            .then((res)=>{
-                console.log(res);
-            })
-            .catch(()=>{console.log('error')})
+        // axios.get('/api/todolist')
+        //     .then((res)=>{
+        //         const data = res.data;
+        //         const action = initListAction(data)
+        //         store.dispatch(action);
+        //     })
+        //     .catch(()=>{console.log('error')})
+        const action = getInitList();
+        store.dispatch(action);
+        console.log(action);
     }
+
+
     handleStoreChange(){
         this.setState(store.getState());
     }
@@ -50,3 +70,5 @@ class TodolistTwo extends Component{
 }
 
 export default TodolistTwo;
+
+// 这是 6-3 之前的课程 下一节 6-4 学习redux-thunk 中间件
