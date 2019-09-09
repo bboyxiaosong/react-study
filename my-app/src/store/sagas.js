@@ -17,6 +17,8 @@ function* getInitList(){
 }
 // generator
 function * mySaga(){
+
+    
     yield takeEvery(GET_INIT_LIST,getInitList)
 
 }

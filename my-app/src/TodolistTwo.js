@@ -1,7 +1,7 @@
 import React ,{ Component,Fragment} from 'react';
 import TodolistUI from './TodolistUI'
 import store from './store/index.js';
-import axios from 'axios';
+// import axios from 'axios';
 import {getInitList , getTodoList , getInputChangeAction , getAddItemAction , getDeleteItemAction , initListAction } from './store/actionCreators';
 class TodolistTwo extends Component{
     constructor(props){
@@ -42,14 +42,7 @@ class TodolistTwo extends Component{
     // 下面用 redux-saga实现以下，不用 redux-thunk中间实现
 
     componentDidMount(){
-        // axios.get('/api/todolist')
-        //     .then((res)=>{
-        //         const data = res.data;
-        //         const action = initListAction(data)
-        //         store.dispatch(action);
-        //     })
-        //     .catch(()=>{console.log('error')})
-        const action = getInitList();
+        const action = getInitList(store);
         store.dispatch(action);
         console.log(action);
     }
