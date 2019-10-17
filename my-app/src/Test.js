@@ -1,5 +1,13 @@
 import React ,{Component} from 'react';
-// 当 父组件的render函数被执行时，他的子组件render都将重新运行
+/**
+ * 当 父组件的render函数被执行时，他的子组件render都将重新运行
+ * 还有 当props 传递参数发生改变的时候 子组件的render 函数也会被运行
+ * 
+ *  当一个组件 的state或者是 prop发生改变的时候，render函数会被重新执行一次
+ * 
+ */
+
+ 
 class Test extends Component {
     render (){
         return (
